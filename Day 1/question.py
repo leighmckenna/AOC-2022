@@ -43,7 +43,7 @@ def main():
     print(np.nanmax(sum_array))
 
     print("answer B: ")
-
+    print(np.sum(np.sort(sum_array)[-3:]))
 
 
 
