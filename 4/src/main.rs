@@ -14,6 +14,15 @@ impl Assignment {
         }
         return false;
     }
+
+    fn collides(&self, assignment: Assignment) -> bool {
+        if assignment.start <= self.start && self.start <= assignment.end || assignment.start <= self.end && self.end <= assignment.end {
+            return true;
+        } else if self.start <= assignment.start && assignment.start <= self.end || self.start <= assignment.end && assignment.end <= self.end {
+            return true;
+        }
+        return false;
+    }
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -67,4 +76,13 @@ fn main() {
     }
 
     println!("Overlap count: {}", contain_count);
+
+    let mut collide_count: i32 = 0;
+    for pair in data.clone() {
+        if pair.elf_one.collides(pair.elf_two){
+            collide_count += 1;
+        }
+    }
+
+    println!("Collide count: {}", collide_count);
 }
